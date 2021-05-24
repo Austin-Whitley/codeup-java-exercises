@@ -13,6 +13,8 @@ public class HelloWorld {
 //        String theNumberThree = "three";
 //        Object o = theNumberThree;
 //        int three = (int) o;
+        //you cant cast a string to an integer the data-types are to different
+
 //
 //        int three = (int) "three";
 
