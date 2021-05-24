@@ -6,6 +6,30 @@ public class HelloWorld {
         System.out.println(myNumber);
         System.out.println(myNumber + myString);
 
+//        int x = 5;
+//        System.out.println(x++);
+//        System.out.println(x);
+
+//        String theNumberThree = "three";
+//        Object o = theNumberThree;
+//        int three = (int) o;
+//
+//        int three = (int) "three";
+
+//        int x = 4;
+//        x = x + 5;
+
+//        int x = 3;
+//        int y = 4;
+//        y = y * x;
+
+//        int maximumInteger = 0;
+//        System.out.println(Integer.MAX_VALUE);
+//        System.out.println(Integer.MIN_VALUE);
+//
+//        System.out.println(Integer.MAX_VALUE + 1);
+//        System.out.println(Integer.MAX_VALUE + 2);
+
 //        int intNum = 4500;
 //        long longNum = 450000;
 //
