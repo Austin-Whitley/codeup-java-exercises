@@ -13,30 +13,3 @@ public class StringExercise {
 
     }
 }
-class bob{
-    public static void main(String[] args) {
-        System.out.println("Say something to bob:");
-        System.out.println("Type \"end\" to stop talking to bob");
-        Scanner scanner = new Scanner(System.in);
-        String userInput = "";
-
-        do {
-
-            userInput = scanner.nextLine();
-
-            System.out.print("Bob: ");
-            if (userInput.endsWith("?")) {
-                System.out.print("Sure.\n");
-            } else if (userInput.endsWith("!")) {
-                System.out.print("Whoa, chill out!\n");
-            } else if (userInput == "") {
-                System.out.print("Fine. Be that way!\n");
-            }else if(userInput.equals("end")){
-                System.out.print("later man.\n");
-            }else {
-                System.out.print("Whatever.\n");
-            }
-        }while(!userInput.equals("end"));
-
-    }
-}
