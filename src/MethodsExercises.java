@@ -78,9 +78,7 @@ public class MethodsExercises {
 //        if(userDice = 6){
 //            Random rand = new Random(10)+1)
 //        }
-//
 //    }
-
 
 
     public static void main(String[] args) {
