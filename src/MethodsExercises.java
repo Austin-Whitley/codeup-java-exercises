@@ -1,4 +1,3 @@
-import java.lang.Math;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -70,15 +69,38 @@ public class MethodsExercises {
         return result;
     }
 
-//    public static int diceRoll(){
-//        Scanner sc = new Scanner(System.in);
-//        int userDice = 0;
-//
-//        userDice = sc.nextInt();
-//        if(userDice = 6){
-//            Random rand = new Random(10)+1)
-//        }
-//    }
+    public static int diceRoll(){
+        Scanner sc = new Scanner(System.in);
+        Random randDice = new Random();
+        int userDice = 0;
+        int roll = 0;
+
+        System.out.println("Please give me a dice to roll: \n[d3], [d4], [d6], [d8], [d10], [d12], [d20]");
+        userDice = sc.nextInt();
+
+        for(int i = 1; i <= 2; i++) {
+            if (userDice == 3) {
+                roll = randDice.nextInt(userDice + 1);
+            } else if (userDice == 4) {
+                roll = randDice.nextInt(userDice + 1);
+            } else if (userDice == 6) {
+                roll = randDice.nextInt(userDice + 1);
+            } else if (userDice == 8) {
+                roll = randDice.nextInt(userDice + 1);
+            } else if (userDice == 10) {
+                roll = randDice.nextInt(userDice + 1);
+            } else if (userDice == 12) {
+                roll = randDice.nextInt(userDice + 1);
+            } else if (userDice == 20) {
+                roll = randDice.nextInt(userDice + 1);
+            }
+            if(i == 1) {
+                System.out.print("Your rolls are: " + roll);
+            }
+        }
+        System.out.print(" and ");
+        return roll;
+    }
 
 
     public static void main(String[] args) {
@@ -90,5 +112,6 @@ public class MethodsExercises {
 
         getInteger(1, 10);
         System.out.println(factorial());
+        System.out.printf("%d%n", diceRoll());
     }
 }
