@@ -122,6 +122,17 @@ public class MethodsExercises {
         return roll;
     }
 
+    public static void HighLow(int userGuess, int numberOfGuesses){
+        Random winningNumber = new Random(100 + 1);
+
+        System.out.println("Please guess a number: ");
+        for(int i = 1; i <= numberOfGuesses; i++){
+
+
+            if()
+        }
+    }
+
 
     public static void main(String[] args) {
         System.out.println( "Addition: " + Addition(5, 5));
