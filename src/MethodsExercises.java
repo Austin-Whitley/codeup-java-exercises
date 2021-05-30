@@ -72,33 +72,53 @@ public class MethodsExercises {
     public static int diceRoll(){
         Scanner sc = new Scanner(System.in);
         Random randDice = new Random();
-        int userDice = 0;
-        int roll = 0;
 
-        System.out.println("Please give me a dice to roll: \n[d3], [d4], [d6], [d8], [d10], [d12], [d20]");
-        userDice = sc.nextInt();
+        int userDice = 0, roll = 0;
+        boolean stopRolling = false;
+        String userChoice = "";
 
-        for(int i = 1; i <= 2; i++) {
-            if (userDice == 3) {
-                roll = randDice.nextInt(userDice + 1);
-            } else if (userDice == 4) {
-                roll = randDice.nextInt(userDice + 1);
-            } else if (userDice == 6) {
-                roll = randDice.nextInt(userDice + 1);
-            } else if (userDice == 8) {
-                roll = randDice.nextInt(userDice + 1);
-            } else if (userDice == 10) {
-                roll = randDice.nextInt(userDice + 1);
-            } else if (userDice == 12) {
-                roll = randDice.nextInt(userDice + 1);
-            } else if (userDice == 20) {
-                roll = randDice.nextInt(userDice + 1);
+        do {
+
+            System.out.println("Please give me a dice to roll: \n[3], [4], [6], [8], [10], [12], [20]");
+            userDice = sc.nextInt();
+
+            for (int i = 1; i <= 2; i++) {
+                if (userDice == 3) {
+                    roll = randDice.nextInt(userDice + 1);
+                } else if (userDice == 4) {
+                    roll = randDice.nextInt(userDice + 1);
+                } else if (userDice == 6) {
+                    roll = randDice.nextInt(userDice + 1);
+                } else if (userDice == 8) {
+                    roll = randDice.nextInt(userDice + 1);
+                } else if (userDice == 10) {
+                    roll = randDice.nextInt(userDice + 1);
+                } else if (userDice == 12) {
+                    roll = randDice.nextInt(userDice + 1);
+                } else if (userDice == 20) {
+                    roll = randDice.nextInt(userDice + 1);
+                }else{
+                    if(i == 1) {
+                        System.out.println("I havent seen that die before");
+                    }
+                }
+                //=============================================//
+                if (i == 1) {
+                    System.out.print("Your rolls are: " + roll);
+                }
             }
-            if(i == 1) {
-                System.out.print("Your rolls are: " + roll);
+            System.out.printf(" and %d%n", roll);
+            System.out.println("Would you like to roll again? ('y' or 'n')");
+            userChoice = sc.next();
+            if(userChoice.equalsIgnoreCase("y")){
+                stopRolling = false;
+            }else if(userChoice.equalsIgnoreCase("n")){
+                stopRolling = true;
+            }else{
+                System.out.println("Uncaught exception: breaking...");
+                break;
             }
-        }
-        System.out.print(" and ");
+        }while(!stopRolling);
         return roll;
     }
 
@@ -112,6 +132,6 @@ public class MethodsExercises {
 
         getInteger(1, 10);
         System.out.println(factorial());
-        System.out.printf("%d%n", diceRoll());
+        diceRoll();
     }
 }
