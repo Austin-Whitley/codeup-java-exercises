@@ -11,7 +11,7 @@ public class MethodsExercises {
     public static int Multiplication(int num1, int num2){
         int result = 0;
         for(int i = 0; i < num2; i++){
-            result = result + num1;
+            result += num1;
         }
         return result;
     }
@@ -78,7 +78,6 @@ public class MethodsExercises {
         String userChoice = "";
 
         do {
-
             System.out.println("Please give me a dice to roll: \n[3], [4], [6], [8], [10], [12], [20]");
             userDice = sc.nextInt();
 
@@ -99,7 +98,7 @@ public class MethodsExercises {
                     roll = randDice.nextInt(userDice + 1);
                 }else{
                     if(i == 1) {
-                        System.out.println("I havent seen that die before");
+                        System.out.println("I haven't seen that die before");
                     }
                 }
                 //=============================================//
@@ -165,6 +164,6 @@ public class MethodsExercises {
 //        getInteger(1, 10);
 //        System.out.println(factorial());
 //        diceRoll();
-        HighLow(5);
+//        HighLow(5);
     }
 }
