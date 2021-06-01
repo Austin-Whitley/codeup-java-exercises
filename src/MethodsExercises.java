@@ -131,6 +131,7 @@ public class MethodsExercises {
 
         System.out.println("Please guess a number: ");
         for(int i = 1; i <= numberOfGuesses; i++){
+
             userGuess = sc.nextInt();
 
             if(userGuess == winningNumber){
@@ -164,6 +165,6 @@ public class MethodsExercises {
 //        getInteger(1, 10);
 //        System.out.println(factorial());
 //        diceRoll();
-//        HighLow(5);
+        HighLow(10);
     }
 }

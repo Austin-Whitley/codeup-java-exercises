@@ -17,7 +17,7 @@ public class Input {
             return false;
         }
     }
-    public int getInt(int min, int max){
+    int getInt(int min, int max){
         System.out.printf("Enter a number between %d and %d%n", min, max);
         int userChoice = scanner.nextInt();
         if(userChoice >= min && userChoice <= max){
@@ -39,8 +39,13 @@ public class Input {
 
     public static void main(String[] args) {
         Input test = new Input();
+
         System.out.println(test.yesNo());
+
         test.getInt(1, 10);
+        System.out.println(test.getInt(10));
+
+
     }
 
 }
