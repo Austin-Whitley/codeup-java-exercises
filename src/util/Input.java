@@ -31,21 +31,17 @@ public class Input {
         return num;
     }
     double getDouble(double min, double max){
-        return min;
+        System.out.printf("Please enter a number between %f and %f%n", min, max);
+        double userChoice = scanner.nextDouble();
+        if(userChoice >= min && userChoice <= max){
+            return userChoice;
+        }else{
+            getDouble(min, max);
+            return -1;
+        }
     }
     double getDouble(){
         return -1;
-    }
-
-    public static void main(String[] args) {
-        Input test = new Input();
-
-        System.out.println(test.yesNo());
-
-        test.getInt(1, 10);
-        System.out.println(test.getInt(10));
-
-
     }
 
 }
