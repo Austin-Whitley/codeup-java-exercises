@@ -11,8 +11,8 @@ public class Person {
     }
     //================================
 
-    public static void sayHello(Person p){
-        System.out.println("Hello, " + p.getName());
+    public void sayHello(){
+        System.out.println("Hello, " + name);
     }
 
     public Person(String name){
