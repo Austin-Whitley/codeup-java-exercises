@@ -13,6 +13,10 @@ public class Bird {
         this.canFly = canFly;
     }
 
+    //the protected access modifier is similar to private but it cannot be accessed outside of the bird class
+    //only subclasses are able to access this variable
+//    protected String nameOfBird;
+
     //what kind of bird is it?
     private String nameOfBird;
     //getter and setter

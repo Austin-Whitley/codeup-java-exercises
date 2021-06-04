@@ -11,7 +11,7 @@ public class BirdTest {
         cardinal.move();
 
         //Reference to object          Variable          assignment       call tot he default constructor
-              Duck mallard               =                      new Duck();
+              Duck                     mallard               =                      new Duck();
 
         mallard.setNameOfBird("Mallard");
         mallard.makeNoise();
