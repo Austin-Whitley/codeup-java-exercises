@@ -16,6 +16,7 @@ public class CollectionsLecture {
         collectionOfNums.add(1,24); //add method will take in 2 arguments, index point you want to place and then the object you want to place
         collectionOfNums.set(2, 43); //set method will replace an item with another. first give the index of where you want to replace, then the item
 
+
         for(int i = 0; i < collectionOfNums.size(); i++){
             System.out.println(collectionOfNums.get(i));
         }
