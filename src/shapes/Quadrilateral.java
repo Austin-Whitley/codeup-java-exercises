@@ -10,8 +10,10 @@ public abstract class Quadrilateral extends Shape implements Measurable{
         this.width = width;
     }
 
-    public abstract double setLength(double length);
-    public abstract double setWidth(double width);
+    //we can write abstract methods like this....
+    public abstract void setLength(double length);
+    //or we can leave off "public", since abstract classes are always public
+    abstract void setWidth(double width);
 
     public double getLength() {
         return length;
