@@ -18,7 +18,7 @@ public class Input {
         return this.scanner.nextLine();
     }
 
-    boolean yesNo(){
+    public boolean yesNo(){
         String userChoice = scanner.nextLine();
         return userChoice.trim().equalsIgnoreCase("y") || userChoice.trim().equalsIgnoreCase("yes");
     }

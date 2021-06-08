@@ -47,13 +47,13 @@ public class Student {
     }
 
     public static void main(String[] args) {
-        Student naysa = new Student("Naysa");
-        System.out.println(naysa.getName());
-        naysa.addGrades(100);
-        System.out.println(naysa.getGrades());
-        naysa.addGrades(95);
-        System.out.println(naysa.getGrades());
-        System.out.println(naysa.getAverage());
+        Student john = new Student("Johnny-Boy");
+        System.out.println(john.getName());
+        john.addGrades(100);
+        System.out.println(john.getGrades());
+        john.addGrades(95);
+        System.out.println(john.getGrades());
+        System.out.println(john.getAverage());
     }
 
 }

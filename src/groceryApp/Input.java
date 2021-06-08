@@ -14,14 +14,14 @@ public class Input {
 
     //create a new Method that returns a string using the scanner we created.
     public String getString(){
-        System.out.println("Do you have any string?");
         return this.scanner.nextLine();
     }
 
-    boolean yesNo(){
+    public boolean yesNo(){
         String userChoice = scanner.nextLine();
         return userChoice.trim().equalsIgnoreCase("y") || userChoice.trim().equalsIgnoreCase("yes");
     }
+
 
     //get a number from the user that is between two numbers
     int getInt(int min, int max){
