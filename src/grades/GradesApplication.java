@@ -57,13 +57,14 @@ public class GradesApplication {
             for (Object name : students.keySet()) {
                 System.out.print("\"" + name + "\" ||");
             }
+            System.out.print(" \"all\" ||");
             System.out.print("\n||(\"end\" to exit) User: ");
             userChoice = scanner.next();
             System.out.println("||==========================================================||");
             if (students.containsKey(userChoice)){
                 while(userNum != -1) {
                     System.out.println("|| What information would you like to access?");
-                    System.out.println("|| 1. Name\n|| 2. Grades\n|| 3. Average grade\n|| 4. Attendance\n|| 5. print csv report\n|| -1. EXIT");
+                    System.out.println("|| 1. Name\n|| 2. Grades\n|| 3. Average grade\n|| 4. Attendance\n|| 5. print csv report\n|| 6. show all csv reports\n|| -1. EXIT");
                     System.out.print("|| Selection: #");
                     userNum = scanner.nextInt();
                     System.out.println("||*******************************************************");
@@ -88,6 +89,12 @@ public class GradesApplication {
                     System.out.println("||*******************************************************");
                 }
                 userNum = 0; //reset number to 0, if it stays -1 you wont be able to look at any other users
+            }else if(userChoice.equalsIgnoreCase("all")){
+                System.out.println("||====Printing all accounts CSV report====");
+                System.out.println("|| Username    |    Name    |    Average");
+                for(Object student: students.keySet()) {
+                    System.out.printf("|| %s, %s, %.2f%n", student, students.get(student).getName(), students.get(student).getAverage());
+                }
             }else if(userChoice.equalsIgnoreCase("end")){
                 System.out.println("|| Goodbye...");
             }
