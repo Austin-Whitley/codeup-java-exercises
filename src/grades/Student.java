@@ -30,10 +30,10 @@ public class Student {
         grades.add(grade);
     }
     //getter and adder for attendance
-    public HashMap<String, String> getAttendance(String key) {
+    public HashMap<String, String> getAttendance() {
         return attendance;
     }
-    public void setAttendance(String date, String value) {
+    public void addAttendance(String date, String value) {
         attendance.put(date, value);
     }
 
@@ -49,9 +49,9 @@ public class Student {
     public static void main(String[] args) {
         Student naysa = new Student("Naysa");
         System.out.println(naysa.getName());
-        naysa.addGrades(90);
+        naysa.addGrades(100);
         System.out.println(naysa.getGrades());
-        naysa.addGrades(90);
+        naysa.addGrades(95);
         System.out.println(naysa.getGrades());
         System.out.println(naysa.getAverage());
     }
