@@ -41,9 +41,15 @@ public class ExceptionsStudy {
 
     }
 
-    public void echoWord() throws IllegalArgumentException{
+    public void echoWord() throws CurseWordException{
         Scanner scanner = new Scanner(System.in);
         System.out.println("I'm a parrot. Please say something and I will repeat it.");
-    }
+        String userInput = scanner.nextLine();
+        if(userInput.equals("curses")){
+            throw new CurseWordException("How could you!");
+        }
+        System.out.println(userInput);
+
+        }
 
 }

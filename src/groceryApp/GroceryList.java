@@ -3,11 +3,15 @@ package groceryApp;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class GroceryList {
 
     public static void main(String[] args) {
-        HashMap<Character, ArrayList<String>> groceryStore = new HashMap<>();
+
+        ArrayList<String> groceryList = new ArrayList<>();
+
+        HashMap<String, ArrayList<String>> groceryStore = new HashMap<>();
         //bakery section
         ArrayList<String> bakery = new ArrayList<>();
         bakery.add("Bread");
@@ -42,42 +46,105 @@ public class GroceryList {
         frozenFood.add("Vegetables");
 
         //Grocery store hashmap containing each section
-        groceryStore.put('B', bakery);
-        groceryStore.put('D', dairy);
-        groceryStore.put('F', frozenFood);
-        groceryStore.put('M', meatAndSeafood);
+        groceryStore.put("B", bakery);
+        groceryStore.put("D", dairy);
+        groceryStore.put("F", frozenFood);
+        groceryStore.put("M", meatAndSeafood);
 
         String[] sectionList = {"Bakery", "Dairy", "Frozen foods", "Meat and Seafood"};
 
         System.out.println("Would you like to make a grocery list?");
         Input input = new Input();
-        System.out.println("(Yes/No) | Answer: ");
+        System.out.print("(Yes/No) | Answer: ");
         String userChoice = input.getString();
-        if(userChoice.equalsIgnoreCase("yes")){
-            System.out.println("Welcome to A-E-B");
-            System.out.println("Please select a section to look through: ");
-            int i = 0;
-            for (Object sectionKey: groceryStore.keySet()){
-                System.out.print(sectionKey + " : ");
-                System.out.println(sectionList[i]);
-                i++;
+        if(userChoice.equalsIgnoreCase("yes")) {
+            while (!userChoice.equalsIgnoreCase("end")) {
+                System.out.println("==========================================================");
+                System.out.println("Welcome to A-E-B");
+                System.out.println("Please select a section to look through: ");
+                int i = 0;
+                for (Object sectionKey : groceryStore.keySet()) {
+                    System.out.print(sectionKey + " : ");
+                    System.out.println(sectionList[i]); //since groceryStore.get('key') was printing the whole arrayList of items
+                    // Im iterating through a regular array that holds the section names
+                    i++;
+                }
+                System.out.print("Selection: ");
+                userChoice = input.getString();
+                //show section based on user response
+                int k = 0;
+                int userItem = 0;
+                if (userChoice.equalsIgnoreCase("b")) {
+                    System.out.println("Welcome to the Bakery:");
+
+                    printSection(bakery, input, k, userItem); //call print section method to list items and take user input
+                    ArrayList<Integer> userCart = printSection(bakery, input, k, userItem);
+                    for (Integer integer : userCart) {
+                        ArrayList<String> tempArray = groceryStore.get(userChoice.toUpperCase(Locale.ROOT));
+                        groceryList.add(tempArray.get(integer));
+                    }
+                } else if (userChoice.equalsIgnoreCase("d")) {
+                    System.out.println("Welcome to the Dairy isle:");
+                    ArrayList<Integer> userCart = printSection(dairy, input, k, userItem);
+                    for (Integer integer : userCart) {
+                        ArrayList<String> tempArray = groceryStore.get(userChoice.toUpperCase(Locale.ROOT));
+                        groceryList.add(tempArray.get(integer));
+                    }
+
+                } else if (userChoice.equalsIgnoreCase("f")) {
+                    System.out.println("Welcome to the Frozen section:");
+
+                    printSection(frozenFood, input, k, userItem);
+                    ArrayList<Integer> userCart = printSection(frozenFood, input, k, userItem);
+                    for (Integer integer : userCart) {
+                        ArrayList<String> tempArray = groceryStore.get(userChoice.toUpperCase(Locale.ROOT));
+                        groceryList.add(tempArray.get(integer));
+                    }
+
+                } else if (userChoice.equalsIgnoreCase("m")) {
+                    System.out.println("Welcome to the Meat and Seafood section:");
+
+                    printSection(meatAndSeafood, input, k, userItem);
+
+                    ArrayList<Integer> userCart = printSection(meatAndSeafood, input, k, userItem);
+                    for (Integer integer : userCart) {
+                        ArrayList<String> tempArray = groceryStore.get(userChoice.toUpperCase(Locale.ROOT));
+                        groceryList.add(tempArray.get(integer));
+                    }
+                } else {
+                    System.out.println("I'm sorry that section is not available.");
+                }
             }
-            userChoice = input.getString();
-            if(userChoice.equalsIgnoreCase("b")){
-                System.out.println();
-            }else if(userChoice.equalsIgnoreCase("d")){
-
-            }else if(userChoice.equalsIgnoreCase("f")){
-
-            }else if(userChoice.equalsIgnoreCase("m")){
-
-            }
-
         }
         else if(userChoice.equalsIgnoreCase("no")){
             System.out.println("No");
         }else{
             System.out.println("That option is not available");
         }
+        for (int m = 0; m < groceryList.size(); m++) {
+            System.out.println(groceryList.get(m));
+        }
     }
+
+    private static ArrayList<Integer> printSection(ArrayList<String> section, Input input, int k, int userItem) {
+        ArrayList<Integer> itemsChosen = new ArrayList<>();
+        while(userItem != -1) {
+        for (Object item: section) {
+            System.out.print((k + 1) + " : ");
+            System.out.print(item + "\n");
+            k++;
+        }
+            System.out.println("Enter a number to add it to your cart.");
+            System.out.print("(-1 to EXIT) Selection: #");
+            userItem = input.getInt();
+            k = 0;
+            if(userItem != -1) {
+                itemsChosen.add(userItem - 1);
+            }else{
+                System.out.println("Going back to the HUB...");
+            }
+        }
+        return itemsChosen;
+    }
+
 }

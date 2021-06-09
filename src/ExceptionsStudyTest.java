@@ -17,9 +17,15 @@ public class ExceptionsStudyTest {
 //            e.printStackTrace();
 //        }
 
-        ExceptionsStudy study = new ExceptionsStudy();
-        study.askForMoreComplexInteger();
-
+//        ExceptionsStudy study = new CurseWordException();
+//
+//
+//        try{
+//            study.echoWord();
+//
+//        }catch (CurseWordException e) {
+//            e.getMessage();
+//        }
 
 
     }
