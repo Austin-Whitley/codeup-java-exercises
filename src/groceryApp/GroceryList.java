@@ -4,12 +4,14 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
+import util.Input;
 
 public class GroceryList {
 
     public static void main(String[] args) {
 
         ArrayList<String> groceryList = new ArrayList<>();
+        ArrayList<Integer> tempList = new ArrayList<>();
 
         HashMap<String, ArrayList<String>> groceryStore = new HashMap<>();
         //bakery section
@@ -77,40 +79,40 @@ public class GroceryList {
                 if (userChoice.equalsIgnoreCase("b")) {
                     System.out.println("Welcome to the Bakery:");
 
-                    printSection(bakery, input, k, userItem); //call print section method to list items and take user input
-                    ArrayList<Integer> userCart = printSection(bakery, input, k, userItem);
-                    for (Integer integer : userCart) {
+                    tempList = printSection(bakery, input, k, userItem); //call print section method to list items and take user input
+                    for (Integer integer : tempList) {
                         ArrayList<String> tempArray = groceryStore.get(userChoice.toUpperCase(Locale.ROOT));
                         groceryList.add(tempArray.get(integer));
                     }
+                    tempList.clear();
                 } else if (userChoice.equalsIgnoreCase("d")) {
                     System.out.println("Welcome to the Dairy isle:");
-                    ArrayList<Integer> userCart = printSection(dairy, input, k, userItem);
-                    for (Integer integer : userCart) {
+                    tempList = printSection(dairy, input, k, userItem);
+                    for (Integer integer : tempList) {
                         ArrayList<String> tempArray = groceryStore.get(userChoice.toUpperCase(Locale.ROOT));
                         groceryList.add(tempArray.get(integer));
                     }
+                    tempList.clear();
 
                 } else if (userChoice.equalsIgnoreCase("f")) {
                     System.out.println("Welcome to the Frozen section:");
 
-                    printSection(frozenFood, input, k, userItem);
-                    ArrayList<Integer> userCart = printSection(frozenFood, input, k, userItem);
-                    for (Integer integer : userCart) {
+                    tempList = printSection(frozenFood, input, k, userItem);
+                    for (Integer integer : tempList) {
                         ArrayList<String> tempArray = groceryStore.get(userChoice.toUpperCase(Locale.ROOT));
                         groceryList.add(tempArray.get(integer));
                     }
-
+                    tempList.clear();
                 } else if (userChoice.equalsIgnoreCase("m")) {
                     System.out.println("Welcome to the Meat and Seafood section:");
 
-                    printSection(meatAndSeafood, input, k, userItem);
+                    tempList = printSection(meatAndSeafood, input, k, userItem);
 
-                    ArrayList<Integer> userCart = printSection(meatAndSeafood, input, k, userItem);
-                    for (Integer integer : userCart) {
+                    for (Integer integer : tempList) {
                         ArrayList<String> tempArray = groceryStore.get(userChoice.toUpperCase(Locale.ROOT));
                         groceryList.add(tempArray.get(integer));
                     }
+                    tempList.clear();
                 } else {
                     System.out.println("I'm sorry that section is not available.");
                 }
@@ -121,7 +123,7 @@ public class GroceryList {
         }else{
             System.out.println("That option is not available");
         }
-        for (int m = 0; m < groceryList.size(); m++) {
+        for(int m = 0; m < groceryList.size(); m++) {
             System.out.println(groceryList.get(m));
         }
     }

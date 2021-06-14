@@ -14,7 +14,6 @@ public class Input {
 
     //create a new Method that returns a string using the scanner we created.
     public String getString(){
-        System.out.println("Do you have any string?");
         return this.scanner.nextLine();
     }
 
@@ -35,10 +34,16 @@ public class Input {
         }
     }
 
+    @SuppressWarnings("all")
     //create an overloaded method (a method that shares its name with another) to get a whole number from the user
-    int getInt(){
-        System.out.println("Enter a number without decimals");
-        return scanner.nextInt();
+    public int getInt(){
+        System.out.print("Enter a number: ");
+        try{
+            return Integer.valueOf(getString());
+        }catch(NumberFormatException nfe){
+            System.out.println("That's not a number!");
+            return getInt();
+        }
     }
 
     //get a number from the user that is between two numbers
@@ -52,9 +57,15 @@ public class Input {
             return getDouble(min, max);
         }
     }
+    @SuppressWarnings("all")
     //create an overloaded method (a method that shares its name with another) to get a decimal number from the user
     public double getDouble(){
-        System.out.println("Gimme your double");
-        return scanner.nextDouble();
+        System.out.println();
+        try{
+            return Double.valueOf(getString());
+        }catch(NumberFormatException nfe){
+            System.out.println("That's not a number!");
+            return getDouble();
+        }
     }
 }
