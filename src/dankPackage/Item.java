@@ -26,4 +26,10 @@ public class Item {
         return this.name;
     }
 
+    public void getItemInfo(){
+        System.out.println("Name: " + this.name);
+        System.out.println("Desc: " + this.description);
+        System.out.println("Sell: " + this.salePrice);
+    }
+
 }
