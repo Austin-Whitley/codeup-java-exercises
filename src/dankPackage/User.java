@@ -113,16 +113,11 @@ public class User extends ItemList{
                 String search = userChoice.toLowerCase(Locale.ROOT);
                 String[] findItem = search.split("get info ");
 
-
-//                System.out.println(search);
-//                System.out.println(findItem[1]);
-
-                //I need to be able to search through a hashmap of objects only using a string
-                System.out.println(austin.inventory.get(findItem[1]));
-
-                //theses are how this would normally be called:
-                apple.getItemInfo();
-                fish.getItemInfo();
+                for(Item i : austin.itemsList){
+                    if(i.getItemID().equals(findItem[1])){
+                        i.getItemInfo();
+                    }
+                }
             }
 
             if(userChoice.equalsIgnoreCase("pick apple")){
