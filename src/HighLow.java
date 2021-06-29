@@ -22,15 +22,15 @@ public class HighLow {
             }else if(userGuess > winningNumber){
                 System.out.println("LOWER!");
                 System.out.printf("You have %d guesses left!%n", numberOfGuesses - i);
+                System.out.println("Try again!");
             }else if(userGuess < winningNumber){
                 System.out.println("HIGHER!");
                 System.out.printf("You have %d guesses left!%n", numberOfGuesses - i);
+                System.out.println("Try again!");
             }
             if(userGuess < 1 || userGuess > 100){
                 System.out.println("The winning number will only be between 1 - 100");
             }
-
-            System.out.println("Try again!");
         }
     }
 
