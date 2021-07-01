@@ -19,10 +19,13 @@ public class ItemList{
     //junk
     public static Item garbage = new Item("garbage", "Garbage", 15, "Eww that stinks!", 0.5);
     public static Item junk = new Item("junk", "Junk", 25, "Just some more useless junk.", 0.5);
+    public static Item oldboot = new Item("boot", "Old Boot", 1, "Dad?...", 0.3);
 
     //items
-    public static Item fishingrod = new Buyable("fishingrod", "Fishing Rod", 2500, "You might be able to use this to catch fish!", 1.5, 25000);
+    public static Buyable fishingrod = new Buyable("fishingrod", "Fishing Rod", 2500, "You might be able to use this to catch fish!", 1.5, 25000);
+    public static Buyable rifle = new Buyable("rifle", "Hunting Rifle", 3000, "A rifle that can be used to hunt wild animals", 4.6, 30000);
 
     //Every item in the game needs to be inside this list in order to retrieve its information.
-    Item[] itemsList = {apple, banana, coconut, fish, rarefish, legendaryfish, exoticfish, garbage, junk, fishingrod};
+    Item[] itemsList = {apple, banana, coconut, fish, rarefish, legendaryfish, exoticfish, garbage, junk, oldboot, fishingrod, rifle};
+    Buyable[] shop = {fishingrod, rifle};
 }

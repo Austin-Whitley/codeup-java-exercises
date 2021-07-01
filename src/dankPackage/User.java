@@ -29,6 +29,9 @@ public class User extends ItemList{
     public void addMoney(int amt){
         this.wallet += amt;
     }
+    public void buyItem(int price){
+        this.wallet -= price;
+    }
 
     public void getItemInformation(Item i){
         i.getItemInfo();
@@ -77,7 +80,7 @@ public class User extends ItemList{
                     int rand = (int)Math.floor(Math.random()*(3) + 1);
                     // 1/3 chance to catch a fish - fish, junk, nothing
                     if(rand == 1){ //caught a regular fish
-                        rand = (int) Math.floor(Math.random() * (100)+ 1);
+                        rand = (int) Math.floor(Math.random() * (100)+ 1); //random number 1-100 to determine what type of fish you caught
 
                         if(rand <= 50){ //fish
                             austin.addItem(fish);
@@ -94,10 +97,19 @@ public class User extends ItemList{
                         }else{
                             System.out.println("Something went wrong...");
                         }
-
-
-                    }else if(rand == 2){ //junk
-                        System.out.println("You found some junk!");
+                        //SWEET SCORE!! You caught some junk while fishing!
+                    }else if(rand == 2){ //Junk list
+                        rand = (int) Math.floor(Math.random() * (3)+ 1);
+                        if(rand == 1) {
+                            System.out.println("You found some junk!");
+                            austin.addItem(junk);
+                        }else if(rand == 2){
+                            System.out.println("You found some garbage!");
+                            austin.addItem(garbage);
+                        }else if(rand == 3){
+                            System.out.println("You found an old boot!");
+                            austin.addItem(oldboot);
+                        }
 
                     }else{
                         System.out.println("wooo! NOTHING");
@@ -120,11 +132,61 @@ public class User extends ItemList{
                 }
             }
 
+            //test if the users input contains the word buy
+            if(userChoice.contains("buy ")){
+
+                //split their input from the word buy to figure out what they want
+                String search = userChoice.toLowerCase(Locale.ROOT);
+                String[] findItem = search.split("buy ");
+
+                //if the item they are trying to buy is in the shop this will work
+                for(Buyable b : austin.shop){
+                    if(b.getItemID().equals(findItem[1])){
+                        System.out.println("Purchase " + b.getItemName() + " for: $" + b.getBuyPrice() + "?");
+                        System.out.print("(Y/N) : ");
+                        userChoice = scanner.nextLine();
+                        //secondary check to purchase
+                        if(userChoice.equalsIgnoreCase("y") || userChoice.equalsIgnoreCase("yes")){
+                            //see if the user has enough money to buy that item
+                            if(austin.getWallet() >= b.getBuyPrice()){
+                                austin.buyItem(b.getBuyPrice());
+                                System.out.println("You bought 1 " + b.getItemName() + "! Current balance: " + austin.getWallet());
+                                //add the item to the users inventory
+                                austin.addItem(b);
+                            }else{
+                                System.out.println("You dont have enough money to purchase this item.");
+                                System.out.println("You need " + (b.getBuyPrice() - austin.getWallet()) + " more dollars.");
+                            }
+                        }
+                    }else{
+                        System.out.println(findItem[1] + " is not inside the shop.");
+                    }
+                }
+            }
+
+            //set wallet balance
+            if(userChoice.contains("give admin coin ")){
+                String search = userChoice.toLowerCase(Locale.ROOT);
+                String[] findItem = search.split("give admin coin ");
+
+                austin.addMoney(Integer.parseInt(findItem[1]));
+                System.out.println("New wallet balance: " + austin.getWallet());
+
+            }
+
+            //get the wallet balance
+            if(userChoice.equalsIgnoreCase("get bal") || userChoice.equalsIgnoreCase("bal")){
+                System.out.println("Balance: " + austin.getWallet());
+            }
+
+            //pick an apple off of the ground (test action)
             if(userChoice.equalsIgnoreCase("pick apple")){
                 austin.addItem(apple);
                 System.out.println("You put an apple in your inventory!");
             }
-            if(userChoice.equalsIgnoreCase("open inv")){
+
+            //open the user's inventory
+            if(userChoice.equalsIgnoreCase("open inv") || userChoice.equalsIgnoreCase("get inv") || userChoice.equalsIgnoreCase("inv")){
                 System.out.println("Inventory: ");
                 for(Item i: austin.inventory.keySet()){
                     String item = i.getItemName();

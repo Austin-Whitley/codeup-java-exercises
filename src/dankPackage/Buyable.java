@@ -7,4 +7,8 @@ public class Buyable extends Item{
         super(itemID, name, salePrice, desc, lb);
         this.buyPrice = buyPrice;
     }
+
+    public int getBuyPrice() {
+        return buyPrice;
+    }
 }

@@ -137,7 +137,7 @@ public class GroceryList {
             k++;
         }
             System.out.println("Enter a number to add it to your cart.");
-            System.out.print("(-1 to EXIT) Selection: #");
+            System.out.print("(-1 to EXIT) Selection: #\n");
             userItem = input.getInt();
             k = 0;
             if(userItem != -1) {
