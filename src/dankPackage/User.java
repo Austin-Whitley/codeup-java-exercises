@@ -119,6 +119,59 @@ public class User extends ItemList{
                 }
             }
 
+            //Hunting
+            //skunk, rabbit, boar, deer, ox, bear, lion, dragon,
+            if(userChoice.equalsIgnoreCase("hunt")){
+                if(austin.inventory.containsKey(rifle)){
+                    System.out.println("You venture out into the wild...");
+
+                    int rand = (int)Math.floor(Math.random()*(3) + 1);
+                    // 1/3 chance to kill an animal - animal, junk, nothing
+                    if(rand == 1){ //caught a regular fish
+                        rand = (int) Math.floor(Math.random() * (100)+ 1); //random number 1-100 to determine what type of fish you caught
+
+                        //whats the likely hood to catch any of these animals?
+                        if(rand <= ){ //skunk
+
+                        }else if(rand <= ){ //rabbit
+
+                        }else if(rand <= ){ //boar
+
+                        }else if(rand <= ){ //deer
+
+                        }else if(rand <= ){ //ox
+
+                        }else if(rand <= ){ //bear
+
+                        }else if(rand <= ){ //lion
+
+                        }else if(rand <= ){ //dragon
+
+                        }else{
+
+                        }
+                        //SWEET SCORE!! You caught some junk while fishing!
+                    }else if(rand == 2){ //Junk list
+                        rand = (int) Math.floor(Math.random() * (3)+ 1);
+                        if(rand == 1) {
+                            System.out.println("You found some junk!");
+                            austin.addItem(junk);
+                        }else if(rand == 2){
+                            System.out.println("You found some garbage!");
+                            austin.addItem(garbage);
+                        }else if(rand == 3){
+                            System.out.println("You found an old boot!");
+                            austin.addItem(oldboot);
+                        }
+
+                    }else{
+                        System.out.println("wooo! NOTHING");
+                    }
+                }else{
+                    System.out.println("You need a fishing rod to do this.");
+                }
+            }
+
             //get item info
             if(userChoice.contains("get info")){
 

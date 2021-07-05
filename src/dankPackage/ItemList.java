@@ -24,9 +24,9 @@ public class ItemList{
     public static Item ox = new Item("ox", "Ox", 10000, "An oxen, this could be useful for carrying luggage if I implemented a weight system into the game.", 176.0);
     //for epic tier animals, there needs  to be a message that the user types in to catch them.
     //make an array of messages in the user class that will be randomized when the epic drop table has been rolled
-    public static Item bear = new Item("bear", "Bear", 12000, "");
-    public static Item lion = new Item();
-    public static Item dragon = new Item();
+    public static Item bear = new Item("bear", "Bear", 15000, "Watch out for goldie-locks, she might try and steal your food.", 478.0);
+    public static Item lion = new Item("lion", "Lion", 18000, "The king of the wild", 247.4);
+    public static Item dragon = new Item("dragon", "Dragon", 25000, "A mythical creature known for destroying entire cities, but somehow you managed to kill one...", 1378.1);
 
     //junk
     public static Item garbage = new Item("garbage", "Garbage", 15, "Eww that stinks!", 0.5);
@@ -37,7 +37,7 @@ public class ItemList{
     public static Buyable fishingrod = new Buyable("fishingrod", "Fishing Rod", 2500, "You might be able to use this to catch fish!", 1.5, 25000);
     public static Buyable rifle = new Buyable("rifle", "Hunting Rifle", 3000, "A rifle that can be used to hunt wild animals", 4.6, 30000);
 
-    //Every item in the game needs to be inside this list in order to retrieve its information.
-    Item[] itemsList = {apple, banana, coconut, fish, rarefish, legendaryfish, exoticfish, garbage, junk, oldboot, fishingrod, rifle};
+    //Every item in the game needs to be inside this list in order to retrieve its information. (get info {item_name})
+    Item[] itemsList = {apple, banana, coconut, fish, rarefish, legendaryfish, exoticfish, skunk, rabbit, boar, deer, ox, bear, lion, dragon, garbage, junk, oldboot, fishingrod, rifle};
     Buyable[] shop = {fishingrod, rifle};
 }
