@@ -1,8 +1,5 @@
 package dankPackage;
 
-import java.lang.reflect.Array;
-import java.sql.SQLOutput;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Scanner;
@@ -11,6 +8,7 @@ public class User extends ItemList{
 
     private int wallet;
     private HashMap<Item, Integer> inventory = new HashMap<>();
+    private String location;
 
 
     public HashMap<Item, Integer> getInventory() {
@@ -32,6 +30,14 @@ public class User extends ItemList{
     }
     public void buyItem(int price){
         this.wallet -= price;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public void getItemInformation(Item i){
@@ -256,6 +262,18 @@ public class User extends ItemList{
             if(userChoice.equalsIgnoreCase("pick apple")){
                 austin.addItem(apple);
                 System.out.println("You put an apple in your inventory!");
+            }
+
+            //location changer
+            if(userChoice.equalsIgnoreCase("walk")){
+                String[] locations = {"body of water", "forest", "market"};
+                int rand = (int) Math.floor(Math.random() * (3));
+                //pick a location randomly
+                System.out.println("You walk around for a while and come across a " + locations[rand]);
+
+                austin.setLocation(locations[rand]);
+                System.out.println(rand);
+                System.out.println("User location: " + austin.getLocation());
             }
 
             //open the user's inventory
