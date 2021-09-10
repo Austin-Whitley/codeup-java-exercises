@@ -47,7 +47,7 @@ public class User extends ItemList{
         //while the user hasn't entered 'end' keep playing
         while(!userChoice.equalsIgnoreCase("end")){
 
-            //Help menus
+//====================================HELP MENU==============================================\\
             if(userChoice.equalsIgnoreCase("help") || userChoice.equalsIgnoreCase("help list")){
                 System.out.println("help inventory : show list of inventory commands");
                 System.out.println("help balance : show a list of balance commands");
@@ -72,7 +72,7 @@ public class User extends ItemList{
                 }
             }
 
-            //fishing
+//=========================================FISHING=========================================\\
             if(userChoice.equalsIgnoreCase("fish")){
                 if(austin.inventory.containsKey(fishingrod)){
                     System.out.println("You cast out your rod...");
@@ -95,7 +95,7 @@ public class User extends ItemList{
                             austin.addItem(exoticfish);
                             System.out.println("You caught an Exotic fish!");
                         }else{
-                            System.out.println("Something went wrong...");
+                            System.out.println("Error: fishing Rand out-of-bounds");
                         }
                         //SWEET SCORE!! You caught some junk while fishing!
                     }else if(rand == 2){ //Junk list
@@ -119,7 +119,7 @@ public class User extends ItemList{
                 }
             }
 
-            //Hunting
+//=========================================HUNTING=========================================\\
             //skunk, rabbit, boar, deer, ox, bear, lion, dragon,
             if(userChoice.equalsIgnoreCase("hunt")){
                 if(austin.inventory.containsKey(rifle)){
@@ -156,7 +156,7 @@ public class User extends ItemList{
                             austin.addItem(dragon);
                             System.out.println("You killed a dragon!");
                         }else{
-
+                            System.out.println("Error: hunting Rand out-of-bounds");
                         }
                         //SWEET SCORE!! You caught some junk while fishing!
                     }else if(rand == 2){ //Junk list
@@ -180,7 +180,7 @@ public class User extends ItemList{
                 }
             }
 
-            //get item info
+//=========================================GET ITEM INFO=========================================\\
             if(userChoice.contains("get info")){
 
                 String search = userChoice.toLowerCase(Locale.ROOT);
@@ -193,7 +193,7 @@ public class User extends ItemList{
                 }
             }
 
-            //test if the users input contains the word buy
+//=========================================BUY_ITEMS=========================================\\
             if(userChoice.contains("buy ")){
 
                 //split their input from the word buy to figure out what they want

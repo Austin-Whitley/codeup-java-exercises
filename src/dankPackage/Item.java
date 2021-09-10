@@ -20,7 +20,7 @@ public class Item {
         return this.salePrice;
     }
 
-    public double weightItem(Item i){
+    public double getItemWeight(){
         return this.weight;
     }
 
@@ -32,6 +32,10 @@ public class Item {
         System.out.println("Name: " + this.name);
         System.out.println("Desc: " + this.description);
         System.out.println("Sell: " + this.salePrice);
+    }
+
+    public String getItemDesc(){
+        return this.description;
     }
 
     public String getItemID(){

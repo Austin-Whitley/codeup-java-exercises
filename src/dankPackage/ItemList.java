@@ -36,8 +36,21 @@ public class ItemList{
     //items
     public static Buyable fishingrod = new Buyable("fishingrod", "Fishing Rod", 2500, "You might be able to use this to catch fish!", 1.5, 25000);
     public static Buyable rifle = new Buyable("rifle", "Hunting Rifle", 3000, "A rifle that can be used to hunt wild animals", 4.6, 30000);
+    public static Buyable sword = new Buyable("sword", "Sword", 5000, "A fine silver sword! commonly used to kill undead creatures", 5.0, 50000);
 
     //Every item in the game needs to be inside this list in order to retrieve its information. (get info {item_name})
-    Item[] itemsList = {apple, banana, coconut, fish, rarefish, legendaryfish, exoticfish, skunk, rabbit, boar, deer, ox, bear, lion, dragon, garbage, junk, oldboot, fishingrod, rifle};
-    Buyable[] shop = {fishingrod, rifle};
+    Item[] itemsList = {apple, banana, coconut, fish, rarefish, legendaryfish, exoticfish, skunk, rabbit, boar, deer, ox, bear, lion, dragon, garbage, junk, oldboot, fishingrod, rifle, sword};
+    static Buyable[] shop = {fishingrod, rifle, sword};
+
+    public static void viewShop(){
+        System.out.println("__---====={ ITEM SHOP }=====---__");
+        for (int i = 0; i < shop.length; i++) {
+            System.out.println("| " + i + ". " + shop[i].getItemName());
+            System.out.println("|    Desc: " + shop[i].getItemDesc());
+            System.out.println("|    LB: " + shop[i].getItemWeight());
+            System.out.println("|    $" + shop[i].getBuyPrice());
+            System.out.println("=================================");
+
+        }
+    }
 }
