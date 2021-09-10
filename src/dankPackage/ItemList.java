@@ -50,7 +50,7 @@ public class ItemList{
             System.out.println("|    LB: " + shop[i].getItemWeight());
             System.out.println("|    $" + shop[i].getBuyPrice());
             System.out.println("=================================");
-
         }
+        System.out.println("Note: to purchase any of these items use \"buy {item_name}\"");
     }
 }

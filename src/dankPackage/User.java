@@ -1,6 +1,7 @@
 package dankPackage;
 
 import java.lang.reflect.Array;
+import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Locale;
@@ -60,15 +61,26 @@ public class User extends ItemList{
                 System.out.println("bal : view how much money you have");
             }else if(userChoice.equalsIgnoreCase("help actions") || userChoice.equalsIgnoreCase("help act")){
                 System.out.println("pick apple : add an apple to your inventory");
+                System.out.println("fish: cast out your fishing rod in a nearby body of water");
+                System.out.println("hunt: travel through the woods to hunt for animals");
+                System.out.println("fight: attack monsters that enter your vicinity");
             }
 
             //grab user input
             userChoice = scanner.nextLine();
 
-            //test random number generator
-            if(userChoice.equalsIgnoreCase("get rand")){
-                for(int i = 0; i <= 10; i++) {
-                    System.out.println((int) Math.floor(Math.random() * (3)+ 1));
+//            //test random number generator
+//            if(userChoice.equalsIgnoreCase("get rand")){
+//                for(int i = 0; i <= 10; i++) {
+//                    System.out.println((int) Math.floor(Math.random() * (3)+ 1));
+//                }
+//            }
+            if(userChoice.equalsIgnoreCase("fight")){
+                if(!austin.inventory.containsKey(sword)){
+                    System.out.println("You need a sword to do this.. maybe check the shop");
+                }else{
+                    //create a monster class that will hold undead creatures for the player to fight
+                    //monsters need to have name, description, hp, and possible loot drops
                 }
             }
 
@@ -248,12 +260,16 @@ public class User extends ItemList{
 
             //open the user's inventory
             if(userChoice.equalsIgnoreCase("open inv") || userChoice.equalsIgnoreCase("get inv") || userChoice.equalsIgnoreCase("inv")){
-                System.out.println("Inventory: ");
-                for(Item i: austin.inventory.keySet()){
-                    String item = i.getItemName();
-                    String numberOfItem = austin.inventory.get(i).toString();
+                if(austin.inventory.size() == 0){
+                    System.out.println("Your inventory is empty!");
+                }else {
+                    System.out.println("Inventory: ");
+                    for (Item i : austin.inventory.keySet()) {
+                        String item = i.getItemName();
+                        String numberOfItem = austin.inventory.get(i).toString();
 
-                    System.out.println(numberOfItem + " : " + item);
+                        System.out.println(numberOfItem + " : " + item);
+                    }
                 }
             }
 
