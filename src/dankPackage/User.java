@@ -1,8 +1,7 @@
 package dankPackage;
 
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Scanner;
+import java.lang.invoke.SwitchPoint;
+import java.util.*;
 
 public class User extends ItemList{
 
@@ -48,6 +47,16 @@ public class User extends ItemList{
         User austin = new User();
         Scanner scanner = new Scanner(System.in);
 
+        austin.setLocation("plains");
+
+        //pickpocket victims
+        HashMap<String, Integer> victims = new HashMap<>();
+        victims.put("man", 3000);
+        victims.put("woman", 3000);
+        victims.put("bum", 3);
+        victims.put("kid", 10);
+        victims.put("merchant", 15000);
+
         String userChoice = "";
 
         System.out.println("Enter: 'help' to get assistance");
@@ -91,7 +100,7 @@ public class User extends ItemList{
             }
 
 //=========================================FISHING=========================================\\
-            if(userChoice.equalsIgnoreCase("fish")){
+            if(userChoice.equalsIgnoreCase("fish") && austin.location.equals("body of water")){
                 if(austin.inventory.containsKey(fishingrod)){
                     System.out.println("You cast out your rod...");
 
@@ -135,11 +144,13 @@ public class User extends ItemList{
                 }else{
                     System.out.println("You need a fishing rod to do this.");
                 }
+            }else if(!austin.location.equals("body of water")){
+                System.out.println("You need to be near a body of water to do this, try walking around.");
             }
 
 //=========================================HUNTING=========================================\\
             //skunk, rabbit, boar, deer, ox, bear, lion, dragon,
-            if(userChoice.equalsIgnoreCase("hunt")){
+            if(userChoice.equalsIgnoreCase("hunt") && austin.location.equals("forest")){
                 if(austin.inventory.containsKey(rifle)){
                     System.out.println("You venture out into the wild...");
 
@@ -196,6 +207,8 @@ public class User extends ItemList{
                 }else{
                     System.out.println("You need a rifle to do this.");
                 }
+            }else if(!austin.location.equals("forest")){
+                System.out.println("You need to be in a forest to do this, try walking around.");
             }
 
 //=========================================GET ITEM INFO=========================================\\
@@ -212,35 +225,58 @@ public class User extends ItemList{
             }
 
 //=========================================BUY_ITEMS=========================================\\
-            if(userChoice.contains("buy ")){
+
+            if (userChoice.contains("buy ") && austin.location.equals("market")) {
 
                 //split their input from the word buy to figure out what they want
                 String search = userChoice.toLowerCase(Locale.ROOT);
                 String[] findItem = search.split("buy ");
 
                 //if the item they are trying to buy is in the shop this will work
-                for(Buyable b : austin.shop){
-                    if(b.getItemID().equals(findItem[1])){
+                for (Buyable b : austin.shop) {
+                    if (b.getItemID().equals(findItem[1])) {
                         System.out.println("Purchase " + b.getItemName() + " for: $" + b.getBuyPrice() + "?");
                         System.out.print("(Y/N) : ");
                         userChoice = scanner.nextLine();
                         //secondary check to purchase
-                        if(userChoice.equalsIgnoreCase("y") || userChoice.equalsIgnoreCase("yes")){
+                        if (userChoice.equalsIgnoreCase("y") || userChoice.equalsIgnoreCase("yes")) {
                             //see if the user has enough money to buy that item
-                            if(austin.getWallet() >= b.getBuyPrice()){
+                            if (austin.getWallet() >= b.getBuyPrice()) {
                                 austin.buyItem(b.getBuyPrice());
                                 System.out.println("You bought 1 " + b.getItemName() + "! Current balance: " + austin.getWallet());
                                 //add the item to the users inventory
                                 austin.addItem(b);
-                            }else{
+                            } else {
                                 System.out.println("You dont have enough money to purchase this item.");
                                 System.out.println("You need " + (b.getBuyPrice() - austin.getWallet()) + " more dollars.");
                             }
                         }
-                    }else{
+                    } else {
                         System.out.println(findItem[1] + " is not inside the shop.");
                     }
                 }
+            } else if(!austin.location.equals("market")){
+                System.out.println("You need to be in a market to do this, try walking around.");
+            }
+
+
+//=========================================THIEF=========================================\\
+            if(userChoice.equalsIgnoreCase("pickpocket") && austin.location.equals("market")){
+                //pickpocket the nearest person to you in the market
+                int rand = (int)Math.floor(Math.random()*(5) + 1);
+                if(rand == 1){
+                    String[] victimsList = {"man", "woman", "bum", "kid", "merchant, "};
+                    rand = (int)Math.floor(Math.random()*(5));
+                    System.out.println("You successfully pickpocket a " + victimsList[rand]);
+                    System.out.println(" + $" + victims.get(victimsList[rand]));
+                    austin.addMoney(victims.get(victimsList[rand]));
+                }else{
+                    austin.setLocation("plains");
+                    System.out.println("You were caught stealing and kicked out of the market!");
+                }
+
+            }else if(!austin.location.equals("market")){
+                System.out.println("You need to be in a market to do this, try walking around");
             }
 
             //set wallet balance
@@ -259,15 +295,16 @@ public class User extends ItemList{
             }
 
             //pick an apple off of the ground (test action)
-            if(userChoice.equalsIgnoreCase("pick apple")){
+            if(userChoice.equalsIgnoreCase("pick apple") && austin.location.equals("forest")){
+
                 austin.addItem(apple);
                 System.out.println("You put an apple in your inventory!");
             }
 
             //location changer
             if(userChoice.equalsIgnoreCase("walk")){
-                String[] locations = {"body of water", "forest", "market"};
-                int rand = (int) Math.floor(Math.random() * (3));
+                String[] locations = {"body of water", "forest", "market", "plains", "dungeon"};
+                int rand = (int) Math.floor(Math.random() * (5));
                 //pick a location randomly
                 System.out.println("You walk around for a while and come across a " + locations[rand]);
 
