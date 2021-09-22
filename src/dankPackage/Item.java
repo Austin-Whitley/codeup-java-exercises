@@ -42,4 +42,8 @@ public class Item {
         return this.itemID;
     }
 
+    public int getSalePrice() {
+        return salePrice;
+    }
+
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 public class ItemList{
 
+    public static Item air = new Item("air", "air", 0, "breath in, breath out", 0.0);
     //foods
     public static Item apple = new Item("apple", "Apple",100, "One of these a day will keep the Doctor away.", 0.25);
     public static Item banana = new Item("banana","Banana",69, "Throw it in the road and see if anyone spins out", 0.15);
@@ -31,7 +32,7 @@ public class ItemList{
     //junk
     public static Item garbage = new Item("garbage", "Garbage", 15, "Eww that stinks!", 0.5);
     public static Item junk = new Item("junk", "Junk", 25, "Just some more useless junk.", 0.5);
-    public static Item oldboot = new Item("boot", "Old Boot", 1, "Dad?...", 0.3);
+    public static Item oldboot = new Item("oldboot", "Old Boot", 1, "Dad?...", 0.3);
 
     //items
     public static Buyable fishingrod = new Buyable("fishingrod", "Fishing Rod", 2500, "You might be able to use this to catch fish!", 1.5, 25000);
@@ -39,7 +40,7 @@ public class ItemList{
     public static Buyable sword = new Buyable("sword", "Sword", 5000, "A fine silver sword! commonly used to kill undead creatures", 5.0, 50000);
 
     //Every item in the game needs to be inside this list in order to retrieve its information. (get info {item_name})
-    Item[] itemsList = {apple, banana, coconut, fish, rarefish, legendaryfish, exoticfish, skunk, rabbit, boar, deer, ox, bear, lion, dragon, garbage, junk, oldboot, fishingrod, rifle, sword};
+    Item[] itemsList = {air, apple, banana, coconut, fish, rarefish, legendaryfish, exoticfish, skunk, rabbit, boar, deer, ox, bear, lion, dragon, garbage, junk, oldboot, fishingrod, rifle, sword};
     static Buyable[] shop = {fishingrod, rifle, sword};
 
     public static void viewShop(){

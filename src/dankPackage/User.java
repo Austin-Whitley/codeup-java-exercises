@@ -21,6 +21,40 @@ public class User extends ItemList{
         }
     }
 
+    public void sellItem(Item i){
+        if(getInventory().containsKey(i)){
+            //remove one value from the item (if there are multiple)
+            this.inventory.put(i, inventory.get(i) - 1);
+            //if the item value reaches 0 remove it from the inventory
+            if(this.inventory.get(i) == 0){
+                this.inventory.remove(i);
+            }
+            System.out.println(i.getItemName() + " " + inventory.get(i));
+            this.addMoney(i.getSalePrice());
+        }else{
+            System.out.println("You dont have that item");
+        }
+    }
+
+    public void sellAllItem(Item i){
+        if(getInventory().containsKey(i)){
+
+            for(int repeatable = this.inventory.get(i); repeatable >= 0; repeatable--) {
+                //remove one value from the item (if there are multiple)
+                this.inventory.put(i, inventory.get(i) - 1);
+                //if the item value reaches 0 remove it from the inventory
+                if (this.inventory.get(i) == 0) {
+                    this.inventory.remove(i);
+                }
+                System.out.println(i.getItemName() + " " + inventory.get(i));
+                this.addMoney(i.getSalePrice());
+            }
+
+        }else{
+            System.out.println("You dont have that item");
+        }
+    }
+
     public int getWallet(){
         return this.wallet;
     }
@@ -41,6 +75,142 @@ public class User extends ItemList{
 
     public void getItemInformation(Item i){
         i.getItemInfo();
+    }
+
+    public User (){
+
+    }
+
+    public User(int wallet, HashMap<Item, Integer> inventory, String location) {
+        this.wallet = wallet;
+        this.inventory = inventory;
+        this.location = location;
+    }
+
+    public Item findItemByName(String name){
+        for(Item i : itemsList){
+            if(i.getItemName().equalsIgnoreCase(name)){
+                System.out.println(name + " sold for: $" + i.getSalePrice());
+                return i;
+            }else{
+                System.out.println("That item does not exist");
+            }
+        }
+        return air;
+    }
+
+    public static Item pickApple(User austin){
+        if(austin.location.equals("forest")) {
+            return apple;
+        }
+
+        return air;
+    }
+
+    public static void hunt(User austin){
+        if(austin.inventory.containsKey(rifle)){
+            System.out.println("You venture out into the wild...");
+
+            int rand = (int)Math.floor(Math.random()*(3) + 1);
+            // 1/3 chance to kill an animal - animal, junk, nothing
+            if(rand == 1){ //caught an animal
+                rand = (int) Math.floor(Math.random() * (100)+ 1); //random number 1-100 to determine what type of fish you caught
+
+                //whats the likely hood to catch any of these animals?
+                if(rand <= 20){ //skunk
+                    austin.addItem(skunk);
+                    System.out.println("You killed a skunk!");
+                }else if(rand <= 50){ //rabbit
+                    austin.addItem(rabbit);
+                    System.out.println("You killed a rabbit!");
+                }else if(rand <= 60){ //boar
+                    austin.addItem(boar);
+                    System.out.println("You killed a boar!");
+                }else if(rand <= 70){ //deer
+                    austin.addItem(deer);
+                    System.out.println("You killed a deer!");
+                }else if(rand <= 88){ //ox
+                    austin.addItem(ox);
+                    System.out.println("You killed an ox!");
+                }else if(rand <= 92){ //bear
+                    austin.addItem(bear);
+                    System.out.println("You killed a bear!");
+                }else if(rand <= 97){ //lion
+                    austin.addItem(lion);
+                    System.out.println("You killed a lion");
+                }else if(rand <= 100){ //dragon
+                    austin.addItem(dragon);
+                    System.out.println("You killed a dragon!");
+                }else{
+                    System.out.println("Error: hunting Rand out-of-bounds");
+                }
+                //SWEET SCORE!! You caught some junk while fishing!
+            }else if(rand == 2){ //Junk list
+                rand = (int) Math.floor(Math.random() * (3)+ 1);
+                if(rand == 1) {
+                    System.out.println("You killed some junk.. wait what?");
+                    austin.addItem(junk);
+                }else if(rand == 2){
+                    System.out.println("You found some garbage in the woods!");
+                    austin.addItem(garbage);
+                }else if(rand == 3){
+                    System.out.println("You found an old boot!");
+                    austin.addItem(oldboot);
+                }
+
+            }else{
+                System.out.println("wooo! NOTHING");
+            }
+        }else{
+            System.out.println("You need a rifle to do this.");
+        }
+
+    }
+
+    public static void fishing(User austin){
+        if(austin.inventory.containsKey(fishingrod)){
+            System.out.println("You cast out your rod...");
+
+            int rand = (int)Math.floor(Math.random()*(3) + 1);
+            // 1/3 chance to catch a fish - fish, junk, nothing
+            if(rand == 1){ //caught a regular fish
+                rand = (int) Math.floor(Math.random() * (100)+ 1); //random number 1-100 to determine what type of fish you caught
+
+                if(rand <= 50){ //fish
+                    austin.addItem(fish);
+                    System.out.println("You caught a fish!");
+                }else if(rand <= 80){ //rare fish
+                    austin.addItem(rarefish);
+                    System.out.println("You caught a Rare fish!");
+                }else if(rand <= 95){ //legendary fish
+                    austin.addItem(legendaryfish);
+                    System.out.println("You caught a Legendary fish!");
+                }else if(rand <= 100){ //exotic fish
+                    austin.addItem(exoticfish);
+                    System.out.println("You caught an Exotic fish!");
+                }else{
+                    System.out.println("Error: fishing Rand out-of-bounds");
+                }
+                //SWEET SCORE!! You caught some junk while fishing!
+            }else if(rand == 2){ //Junk list
+                rand = (int) Math.floor(Math.random() * (3)+ 1);
+                if(rand == 1) {
+                    System.out.println("You found some junk!");
+                    austin.addItem(junk);
+                }else if(rand == 2){
+                    System.out.println("You found some garbage!");
+                    austin.addItem(garbage);
+                }else if(rand == 3){
+                    System.out.println("You found an old boot!");
+                    austin.addItem(oldboot);
+                }
+
+            }else{
+                System.out.println("wooo! NOTHING");
+            }
+        }else{
+            System.out.println("You need a fishing rod to do this.");
+        }
     }
 
     public static void main(String[] args) {
@@ -79,6 +249,8 @@ public class User extends ItemList{
                 System.out.println("fish: cast out your fishing rod in a nearby body of water");
                 System.out.println("hunt: travel through the woods to hunt for animals");
                 System.out.println("fight: attack monsters that enter your vicinity");
+                System.out.println("walk: move your player around to different areas to use unique actions");
+                System.out.println("map: retrieve your current location");
             }
 
             //grab user input
@@ -101,113 +273,17 @@ public class User extends ItemList{
 
 //=========================================FISHING=========================================\\
             if(userChoice.equalsIgnoreCase("fish") && austin.location.equals("body of water")){
-                if(austin.inventory.containsKey(fishingrod)){
-                    System.out.println("You cast out your rod...");
-
-                    int rand = (int)Math.floor(Math.random()*(3) + 1);
-                    // 1/3 chance to catch a fish - fish, junk, nothing
-                    if(rand == 1){ //caught a regular fish
-                        rand = (int) Math.floor(Math.random() * (100)+ 1); //random number 1-100 to determine what type of fish you caught
-
-                        if(rand <= 50){ //fish
-                            austin.addItem(fish);
-                            System.out.println("You caught a fish!");
-                        }else if(rand <= 80){ //rare fish
-                            austin.addItem(rarefish);
-                            System.out.println("You caught a Rare fish!");
-                        }else if(rand <= 95){ //legendary fish
-                            austin.addItem(legendaryfish);
-                            System.out.println("You caught a Legendary fish!");
-                        }else if(rand <= 100){ //exotic fish
-                            austin.addItem(exoticfish);
-                            System.out.println("You caught an Exotic fish!");
-                        }else{
-                            System.out.println("Error: fishing Rand out-of-bounds");
-                        }
-                        //SWEET SCORE!! You caught some junk while fishing!
-                    }else if(rand == 2){ //Junk list
-                        rand = (int) Math.floor(Math.random() * (3)+ 1);
-                        if(rand == 1) {
-                            System.out.println("You found some junk!");
-                            austin.addItem(junk);
-                        }else if(rand == 2){
-                            System.out.println("You found some garbage!");
-                            austin.addItem(garbage);
-                        }else if(rand == 3){
-                            System.out.println("You found an old boot!");
-                            austin.addItem(oldboot);
-                        }
-
-                    }else{
-                        System.out.println("wooo! NOTHING");
-                    }
-                }else{
-                    System.out.println("You need a fishing rod to do this.");
-                }
-            }else if(!austin.location.equals("body of water")){
+                fishing(austin);
+            }else if(userChoice.equalsIgnoreCase("fish") && !austin.location.equals("body of water")){
                 System.out.println("You need to be near a body of water to do this, try walking around.");
             }
 
 //=========================================HUNTING=========================================\\
             //skunk, rabbit, boar, deer, ox, bear, lion, dragon,
+
             if(userChoice.equalsIgnoreCase("hunt") && austin.location.equals("forest")){
-                if(austin.inventory.containsKey(rifle)){
-                    System.out.println("You venture out into the wild...");
-
-                    int rand = (int)Math.floor(Math.random()*(3) + 1);
-                    // 1/3 chance to kill an animal - animal, junk, nothing
-                    if(rand == 1){ //caught an animal
-                        rand = (int) Math.floor(Math.random() * (100)+ 1); //random number 1-100 to determine what type of fish you caught
-
-                        //whats the likely hood to catch any of these animals?
-                        if(rand <= 20){ //skunk
-                            austin.addItem(skunk);
-                            System.out.println("You killed a skunk!");
-                        }else if(rand <= 50){ //rabbit
-                            austin.addItem(rabbit);
-                            System.out.println("You killed a rabbit!");
-                        }else if(rand <= 60){ //boar
-                            austin.addItem(boar);
-                            System.out.println("You killed a boar!");
-                        }else if(rand <= 70){ //deer
-                            austin.addItem(deer);
-                            System.out.println("You killed a deer!");
-                        }else if(rand <= 88){ //ox
-                            austin.addItem(ox);
-                            System.out.println("You killed an ox!");
-                        }else if(rand <= 92){ //bear
-                            austin.addItem(bear);
-                            System.out.println("You killed a bear!");
-                        }else if(rand <= 97){ //lion
-                            austin.addItem(lion);
-                            System.out.println("You killed a lion");
-                        }else if(rand <= 100){ //dragon
-                            austin.addItem(dragon);
-                            System.out.println("You killed a dragon!");
-                        }else{
-                            System.out.println("Error: hunting Rand out-of-bounds");
-                        }
-                        //SWEET SCORE!! You caught some junk while fishing!
-                    }else if(rand == 2){ //Junk list
-                        rand = (int) Math.floor(Math.random() * (3)+ 1);
-                        if(rand == 1) {
-                            System.out.println("You killed some junk.. wait what?");
-                            austin.addItem(junk);
-                        }else if(rand == 2){
-                            System.out.println("You found some garbage in the woods!");
-                            austin.addItem(garbage);
-                        }else if(rand == 3){
-                            System.out.println("You found an old boot!");
-                            austin.addItem(oldboot);
-                        }
-
-                    }else{
-                        System.out.println("wooo! NOTHING");
-                    }
-                }else{
-                    System.out.println("You need a rifle to do this.");
-                }
-            }else if(!austin.location.equals("forest")){
+                hunt(austin);
+            }else if(userChoice.equalsIgnoreCase("hunt") && !austin.location.equals("forest")){
                 System.out.println("You need to be in a forest to do this, try walking around.");
             }
 
@@ -251,14 +327,34 @@ public class User extends ItemList{
                                 System.out.println("You need " + (b.getBuyPrice() - austin.getWallet()) + " more dollars.");
                             }
                         }
-                    } else {
+                    }else {
                         System.out.println(findItem[1] + " is not inside the shop.");
                     }
                 }
-            } else if(!austin.location.equals("market")){
+            } else if(userChoice.contains("buy ") && !austin.location.equals("market")){
                 System.out.println("You need to be in a market to do this, try walking around.");
             }
 
+            //sell an item
+            if(userChoice.contains("sell ") && austin.location.equals("market")){
+                String search = userChoice.toLowerCase(Locale.ROOT);
+                String[] findItem = search.split("sell ");
+
+                austin.sellItem(austin.findItemByName(findItem[1]));
+            }
+
+            //sell an item
+            if(userChoice.contains("sell all ") && austin.location.equals("market")){
+                String search = userChoice.toLowerCase(Locale.ROOT);
+                String[] findItem = search.split("sell ");
+
+                austin.sellAllItem(austin.findItemByName(findItem[1]));
+            }
+
+            //view the shop
+            if(userChoice.contains("shop") && austin.location.equals("market")){
+                viewShop();
+            }
 
 //=========================================THIEF=========================================\\
             if(userChoice.equalsIgnoreCase("pickpocket") && austin.location.equals("market")){
@@ -275,7 +371,7 @@ public class User extends ItemList{
                     System.out.println("You were caught stealing and kicked out of the market!");
                 }
 
-            }else if(!austin.location.equals("market")){
+            }else if(userChoice.equalsIgnoreCase("pickpocket") && !austin.location.equals("market")){
                 System.out.println("You need to be in a market to do this, try walking around");
             }
 
@@ -297,8 +393,10 @@ public class User extends ItemList{
             //pick an apple off of the ground (test action)
             if(userChoice.equalsIgnoreCase("pick apple") && austin.location.equals("forest")){
 
-                austin.addItem(apple);
+                austin.addItem(pickApple(austin));
                 System.out.println("You put an apple in your inventory!");
+            }else if(userChoice.equalsIgnoreCase("pick apple") && !austin.location.equals("forest")){
+                System.out.println("You need to be in a forest to do this");
             }
 
             //location changer
